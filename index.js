@@ -1,6 +1,92 @@
 //Convertidor de monedas
 
-function dolares() {
+let saludo = document.getElementById("saludo");
+let sesion = prompt("Ingrese la seccion a la que desea ingresar (dolares, euros o reales)");
+if(sesion === "dolares"){
+    saludo.innerHTML = "<h3>Bienvenido al conversor de USD a ARG</h3>";
+    saludo.className = "verde";
+  }else if(sesion === "euros"){
+    saludo.innerHTML = "<h3>Bienvenido al conversor de EUR a ARG</h3>";
+    saludo.className = "azul";
+}else if(sesion === "reales"){
+    saludo.innerHTML = "<h3>Bienvenido al conversor de BRL a ARG</h3>";
+    saludo.className = "amarillo";
+  }else{
+    saludo.innerHTML = "<h3>Por favor elija entre dolares, euros o reales</h3>";
+    saludo.className = "coral";
+  }
+
+function convertir() {
+    let valore = parseInt(document.getElementById("valor").value);
+    let resultado = 0;
+    let dolar = 282;
+    let euro =285;
+    let real = 29; 
+    if (document.getElementById("uno").checked){
+        resultado = valore * dolar;
+        alert(`El cambio de ${valore} USD a ARG es ${resultado}`);
+    }
+    else if (document.getElementById("dos").checked){
+        resultado = valore * euro;
+        alert(`El cambio de ${valore} EUR a ARG es ${resultado}`);
+    }
+    else if (document.getElementById("tres").checked){
+        resultado = valore * real;
+        alert(`El cambio de ${valore} BRL a ARG es ${resultado}`);
+    }
+    else{
+        alert("Por favor seleccione uno")
+    }
+}
+
+let contenedor = document.getElementById("contenedor");
+let parrafo = document.createElement("p");
+parrafo.innerHTML = "<h2>Gracias por utilizar nuestros servicios</h2>";
+contenedor.append(parrafo);
+contenedor.className = "aqua";
+
+let contenedor2 = document.getElementById("contenedor2");
+//Prueba para remover
+contenedor2.remove();
+contenedor2.className = "red";
+
+let probando = document.getElementById("prueba");
+let prueba = ["Pagina", "en", "preparacion", "mil", "disculpas"]
+
+prueba.forEach(item => {
+    let li = document.createElement("li");
+    li.innerHTML = item;
+    probando.append(li);
+  });
+
+let divisas = {id: 0, divisa: "ARS", precio: "1"};
+let prueba2 = document.getElementById("prueba2");
+let item = document.createElement("div");
+item.innerHTML = `
+  <h2>Id: ${divisas.id}</h2>
+  <p>Divisa: ${divisas.divisa}</p>
+  <b>$${divisas.precio}</b>
+`;
+prueba2.append(item);
+
+let prueba3 = document.getElementById("prueba3");
+let divisas2 = [
+  { id: 1, nombre: "USD", precio: 282 },
+  { id: 2, nombre: "EUR", precio: 285 },
+  { id: 3, nombre: "BRL", precio: 29 },
+];
+
+divisas2.forEach((divisa) => {
+    let item = document.createElement("div");
+    item.innerHTML = `
+      <h2>Id: ${divisa.id}</h2>
+      <p>Divisa: ${divisa.nombre}</p>
+      <b>$${divisa.precio}</b>
+    `;
+    prueba3.append(item);
+  });
+
+/*function dolares() {
     let monto = prompt("Ingresa el monto de USD a cambiar por ARS")
     let multiplicacion = 282;
     let resultado = monto * multiplicacion
@@ -53,7 +139,7 @@ switch (entrada){
 }
 }
 
-//Objetos y Arrays
+Objetos y Arrays
 
 function Simbolo(valor, letras, pais){
     this.precio = valor;
@@ -77,7 +163,7 @@ console.log (pruebaArray.includes("usd")); //true
 
 cotizacion ()
 
-/* Funciones de suma, resta, multiplicacion y division
+Funciones de suma, resta, multiplicacion y division
 
 function suma() {
     let numero1 = parseInt(prompt("Ingrese el primer numero a sumar"));

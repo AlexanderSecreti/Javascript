@@ -1,0 +1,42 @@
+/*
+Pagina en preparacion
+
+*{
+  margin: 0;
+}
+
+*/
+
+*{
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.rojo{
+    background-color: red;
+  }
+  
+  .verde{
+    background-color: green;
+  }
+  
+  .amarillo{
+    background-color: yellow;
+  }
+  
+  .azul{
+    background-color: blue;
+  }
+
+  .coral{
+    background-color: coral;
+}
+
+  .aqua{
+    background-color: aqua;
+}
+
+.fondobeige {
+    background-color: #F5F5DC;
+    color: black;
+}
