@@ -8,35 +8,56 @@ Pagina en preparacion
 */
 
 *{
-    padding: 0;
-    box-sizing: border-box;
+  padding: 0;
+}
+
+body{
+  color: #fff;
+  background-image: radial-gradient(circle, #0ea450, #008b7e, #006ea0, #004b9f, #191d74);
 }
 
 .rojo{
     background-color: red;
   }
   
-  .verde{
-    background-color: green;
-  }
-  
-  .amarillo{
-    background-color: yellow;
-  }
-  
-  .azul{
-    background-color: blue;
-  }
-
-  .coral{
-    background-color: coral;
+.mexcla{
+  background-image: radial-gradient(circle, #0ea450, #4bb047, #71bb3e, #96c635, #bacf2e);
 }
 
-  .aqua{
-    background-color: aqua;
+h1{
+  text-align: center;
+  text-decoration: underline;
 }
 
-.fondobeige {
-    background-color: #F5F5DC;
-    color: black;
+.formulario{
+  margin: 20px;
+  font-size: 20px;
+  font-family: monospace;
+  text-align: center;
+}
+
+#uno{
+  width: 80px;
+  height: 15px;
+}
+
+#dos{
+  width: 80px;
+  height: 15px;
+}
+
+#tres{
+  width: 80px;
+  height: 15px;
+}
+
+#valor{
+  font-size: 20px;
+}
+
+#cotizador{
+  font-size: 20px;
+  border-radius: 12%;
+  background-image: radial-gradient(circle, #0ea450, #4bb047, #71bb3e, #96c635, #bacf2e);
+  color: #fff
 }

@@ -1,20 +1,32 @@
+//Se guarda incluso si reiniciamos la pc (datos comunes)
+localStorage.setItem("usuario", "admin");
+localStorage.setItem("prueba", "prueba");
+
+//No se guarda si reiniciamos la pc, solo si refrescamos la pagina (datos sensibles)
+sessionStorage.setItem("contraseña", "1234");
+sessionStorage.setItem("valor", "true");
+sessionStorage.setItem("prueba", "prueba");
+
+localStorage.removeItem("prueba");
+sessionStorage.removeItem("prueba");
+
 //Convertidor de monedas
 
 let saludo = document.getElementById("saludo");
 let sesion = prompt("Ingrese la seccion a la que desea ingresar (dolares, euros o reales)");
 if(sesion === "dolares"){
     saludo.innerHTML = "<h3>Bienvenido al conversor de USD a ARG</h3>";
-    saludo.className = "verde";
+    saludo.className = "mexcla";
   }else if(sesion === "euros"){
     saludo.innerHTML = "<h3>Bienvenido al conversor de EUR a ARG</h3>";
-    saludo.className = "azul";
+    saludo.className = "mexcla";
 }else if(sesion === "reales"){
     saludo.innerHTML = "<h3>Bienvenido al conversor de BRL a ARG</h3>";
-    saludo.className = "amarillo";
+    saludo.className = "mexcla";
   }else{
-    saludo.innerHTML = "<h3>Por favor elija entre dolares, euros o reales</h3>";
-    saludo.className = "coral";
-  }
+    saludo.innerHTML = "<h3>Bienvenidos al Conversor de Monedas</h3>";
+    saludo.className = "";
+}
 
 function convertir() {
     let valore = parseInt(document.getElementById("valor").value);
@@ -39,11 +51,35 @@ function convertir() {
     }
 }
 
+let varcotizador = document.getElementById("cotizador");
+cotizador.onclick = convertir;
+
+/* 
+Posibles opciones para el boton
+
+cotizador.addEventListener("mousedown", () => console.log("mousedown"));
+cotizador.addEventListener("mouseup", () => console.log("mouseup"));
+cotizador.addEventListener("mouseover", () => console.log("mouseover"));
+cotizador.addEventListener("click", () => console.log("click"));
+cotizador.addEventListener("mouseout", () => console.log("mouseout"));
+cotizador.addEventListener("mousemove", () => console.log("mousemove"));
+*/
+
+let formulario = document.getElementById("formulario");
+formulario.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  let inputs = e.target.children;
+  console.log("Su nombre es " + inputs[0].value);
+  console.log("Y tienes " + inputs[1].value + " años");
+  console.log(inputs[0].value + " Gracias por utilizar nuestros servicios");
+})
+
 let contenedor = document.getElementById("contenedor");
 let parrafo = document.createElement("p");
-parrafo.innerHTML = "<h2>Gracias por utilizar nuestros servicios</h2>";
+parrafo.innerHTML = "<h2>Prueba removida, gracias por utilizar nuestros servicios</h2>";
 contenedor.append(parrafo);
-contenedor.className = "aqua";
+contenedor.className = "mexcla";
 
 let contenedor2 = document.getElementById("contenedor2");
 //Prueba para remover
@@ -51,7 +87,7 @@ contenedor2.remove();
 contenedor2.className = "red";
 
 let probando = document.getElementById("prueba");
-let prueba = ["Pagina", "en", "preparacion", "mil", "disculpas"]
+let prueba = ["<h2>Pagina en preparacion mil disculpas"]
 
 prueba.forEach(item => {
     let li = document.createElement("li");
@@ -86,7 +122,8 @@ divisas2.forEach((divisa) => {
     prueba3.append(item);
   });
 
-/*function dolares() {
+/*
+function dolares() {
     let monto = prompt("Ingresa el monto de USD a cambiar por ARS")
     let multiplicacion = 282;
     let resultado = monto * multiplicacion
