@@ -1,32 +1,4 @@
-//Se guarda incluso si reiniciamos la pc (datos comunes)
-localStorage.setItem("usuario", "admin");
-localStorage.setItem("prueba", "prueba");
-
-//No se guarda si reiniciamos la pc, solo si refrescamos la pagina (datos sensibles)
-sessionStorage.setItem("contraseña", "1234");
-sessionStorage.setItem("valor", "true");
-sessionStorage.setItem("prueba", "prueba");
-
-localStorage.removeItem("prueba");
-sessionStorage.removeItem("prueba");
-
-//Convertidor de monedas
-
-let saludo = document.getElementById("saludo");
-let sesion = prompt("Ingrese la seccion a la que desea ingresar (dolares, euros o reales)");
-if(sesion === "dolares"){
-    saludo.innerHTML = "<h3>Bienvenido al conversor de USD a ARG</h3>";
-    saludo.className = "mexcla";
-  }else if(sesion === "euros"){
-    saludo.innerHTML = "<h3>Bienvenido al conversor de EUR a ARG</h3>";
-    saludo.className = "mexcla";
-}else if(sesion === "reales"){
-    saludo.innerHTML = "<h3>Bienvenido al conversor de BRL a ARG</h3>";
-    saludo.className = "mexcla";
-  }else{
-    saludo.innerHTML = "<h3>Bienvenidos al Conversor de Monedas</h3>";
-    saludo.className = "";
-}
+//funcion para convertir los dolares
 
 function convertir() {
     let valore = parseInt(document.getElementById("valor").value);
@@ -54,16 +26,7 @@ function convertir() {
 let varcotizador = document.getElementById("cotizador");
 cotizador.onclick = convertir;
 
-/* 
-Posibles opciones para el boton
-
-cotizador.addEventListener("mousedown", () => console.log("mousedown"));
-cotizador.addEventListener("mouseup", () => console.log("mouseup"));
-cotizador.addEventListener("mouseover", () => console.log("mouseover"));
-cotizador.addEventListener("click", () => console.log("click"));
-cotizador.addEventListener("mouseout", () => console.log("mouseout"));
-cotizador.addEventListener("mousemove", () => console.log("mousemove"));
-*/
+// Mostrar nombre por consola
 
 let formulario = document.getElementById("formulario");
 formulario.addEventListener("submit", (e) => {
@@ -74,17 +37,6 @@ formulario.addEventListener("submit", (e) => {
   console.log("Y tienes " + inputs[1].value + " años");
   console.log(inputs[0].value + " Gracias por utilizar nuestros servicios");
 })
-
-let contenedor = document.getElementById("contenedor");
-let parrafo = document.createElement("p");
-parrafo.innerHTML = "<h2>Prueba removida, gracias por utilizar nuestros servicios</h2>";
-contenedor.append(parrafo);
-contenedor.className = "mexcla";
-
-let contenedor2 = document.getElementById("contenedor2");
-//Prueba para remover
-contenedor2.remove();
-contenedor2.className = "red";
 
 let probando = document.getElementById("prueba");
 let prueba = ["<h2>Pagina en preparacion mil disculpas"]
@@ -122,7 +74,127 @@ divisas2.forEach((divisa) => {
     prueba3.append(item);
   });
 
-/*
+//Se guarda incluso si reiniciamos la pc (datos comunes)
+localStorage.setItem("username", "admin");
+localStorage.setItem("prueba", "prueba");
+
+//No se guarda si reiniciamos la pc, solo si refrescamos la pagina (datos sensibles)
+sessionStorage.setItem("contraseña", "1234");
+sessionStorage.setItem("valor", "true");
+sessionStorage.setItem("prueba", "prueba");
+
+localStorage.removeItem("prueba");
+sessionStorage.removeItem("prueba");
+
+//Se le pide un nombre de usuario
+let usuario;
+let usuarioStorage = localStorage.getItem("usuario");
+if(usuarioStorage){
+  usuario = usuarioStorage;
+  let mensaje = `Bienvenido ${usuario}`;
+  alert(mensaje);
+}else{
+  usuario = prompt("Ingrese su usuario");
+  localStorage.setItem("usuario", usuario);
+}
+
+let saludo = document.getElementById("botondeslogueo");
+saludo.innerHTML = "Cerrar sesion";
+saludo.className = "rojo";
+
+//Cargar el storage
+const nombre = [
+    { id: 1, nombre: `${usuario}` },
+  ];
+  localStorage.setItem("deslogueo", JSON.stringify(nombre));
+  
+//traemos los elementos del dom
+let varbienvenida = document.getElementById("bienvenida");
+let botondeslogueo = document.getElementById("botondeslogueo");
+  
+//declaramos el deslogueo y traemosdel storage
+let deslogueo = [];
+let deslogueoStorage = JSON.parse(localStorage.getItem("deslogueo"));
+  
+//validamos si en el storage existe el deslogueo
+if(deslogueoStorage){
+  deslogueo = deslogueoStorage;
+}
+  
+//recorremos el deslogueo para renderizarlo en el contenedor
+deslogueo.forEach(item => {
+  let div = document.createElement("div");
+  div.innerHTML = `
+    <h2>ID: ${item.id}</h2>
+    <p>Bienvenido: ${item.nombre}</p>
+  `;
+  varbienvenida.append(div);
+});
+  
+//lógica para el borrado del deslogueo y del contenedor
+botondeslogueo.addEventListener("click", () => {
+  localStorage.clear();
+  varbienvenida.innerHTML = "Sesion Cerrada";
+  varbienvenida.className = "cerrada";
+  alert("Sesion cerrada");
+})
+
+//Arrays
+function Simbolo(valor, letras, pais){
+    this.precio = valor;
+    this.abreviatura = letras;
+    this.nacionalidad = pais;
+  }
+
+const simbolo1 = new Simbolo(8, "MXN", "Mexico");
+const simbolo2 = new Simbolo(1, "JPY", "Japon");
+console.log(simbolo1.precio);
+console.log(simbolo2.nacionalidad);
+
+const pruebaArray = ["usd", "eur", "brl"];
+pruebaArray.push("finaldelArray");
+pruebaArray.unshift("principioDelArray");
+console.log (pruebaArray);
+console.log (pruebaArray.indexOf("eur"));
+//eur queda en posicion 2 dado al .unshift principioDelArray que toma la posicion 0
+console.log (pruebaArray.includes("noexiste")); //false
+console.log (pruebaArray.includes("usd")); //true
+//includes comprueba si existe, true or false
+
+/* let contenedor = document.getElementById("contenedor");
+let parrafo = document.createElement("p");
+parrafo.innerHTML = "<h2>Prueba removida, gracias por utilizar nuestros servicios</h2>";
+contenedor.append(parrafo);
+contenedor.className = "mexcla";
+
+//Convertidor de monedas
+
+
+let saludo = document.getElementById("saludo");
+let sesion = prompt("Ingrese la seccion a la que desea ingresar (dolares, euros o reales)");
+if(sesion === "dolares"){
+    saludo.innerHTML = "<h3>Bienvenido al conversor de USD a ARG</h3>";
+    saludo.className = "mexcla";
+  }else if(sesion === "euros"){
+    saludo.innerHTML = "<h3>Bienvenido al conversor de EUR a ARG</h3>";
+    saludo.className = "mexcla";
+}else if(sesion === "reales"){
+    saludo.innerHTML = "<h3>Bienvenido al conversor de BRL a ARG</h3>";
+    saludo.className = "mexcla";
+  }else{
+    saludo.innerHTML = "<h3>Bienvenidos al Conversor de Monedas</h3>";
+    saludo.className = "";
+}
+
+Posibles opciones para el boton
+
+cotizador.addEventListener("mousedown", () => console.log("mousedown"));
+cotizador.addEventListener("mouseup", () => console.log("mouseup"));
+cotizador.addEventListener("mouseover", () => console.log("mouseover"));
+cotizador.addEventListener("click", () => console.log("click"));
+cotizador.addEventListener("mouseout", () => console.log("mouseout"));
+cotizador.addEventListener("mousemove", () => console.log("mousemove"));
+
 function dolares() {
     let monto = prompt("Ingresa el monto de USD a cambiar por ARS")
     let multiplicacion = 282;
@@ -175,30 +247,6 @@ switch (entrada){
     }
 }
 }
-
-Objetos y Arrays
-
-function Simbolo(valor, letras, pais){
-    this.precio = valor;
-    this.abreviatura = letras;
-    this.nacionalidad = pais;
-  }
-  const simbolo1 = new Simbolo(8, "MXN", "Mexico");
-  const simbolo2 = new Simbolo(1, "JPY", "Japon");
-  console.log(simbolo1.precio);
-  console.log(simbolo2.nacionalidad);
-
-const pruebaArray = ["usd", "eur", "brl"];
-pruebaArray.push("finaldelArray");
-pruebaArray.unshift("principioDelArray");
-console.log (pruebaArray);
-console.log (pruebaArray.indexOf("eur"));
-//eur queda en posicion 2 dado al .unshift principioDelArray que toma la posicion 0
-console.log (pruebaArray.includes("noexiste")); //false
-console.log (pruebaArray.includes("usd")); //true
-//includes comprueba si existe, true or false
-
-cotizacion ()
 
 Funciones de suma, resta, multiplicacion y division
 
