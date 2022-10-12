@@ -1,5 +1,5 @@
 /*
-Pagina en preparacion
+Conversor de monedas
 
 *{
   margin: 0;
@@ -62,11 +62,21 @@ h1{
 #botondeslogueo{
   font-size: 20px;
   border-radius: 12%;
+  background-color: rgb(237, 233, 15);
+  color: rgb(72, 65, 65);
+  position: absolute;
+  right: 100px;
+  top: 80px;
+}
+
+#botonlogueo{
+  font-size: 20px;
+  border-radius: 12%;
   background-color: green;
   color: #fff;
   position: absolute;
   right: 100px;
-  top: 55px;
+  top: 45px;
 }
 
 #bienvenida{
@@ -77,9 +87,5 @@ h1{
 
 .rojo{
   color: #fff;
-  background-image: linear-gradient(to right top, #ec1f1f, #f33f3a, #f95753, #fd6d6a, #ff8181);
-}
-
-.cerrada{
   background-image: linear-gradient(to right top, #ec1f1f, #f33f3a, #f95753, #fd6d6a, #ff8181);
 }

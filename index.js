@@ -1,4 +1,4 @@
-//funcion para convertir los dolares
+//Funcion para convertir dolares euros y reales a pesos argentinos
 
 function convertir() {
     let valore = parseInt(document.getElementById("valor").value);
@@ -23,6 +23,8 @@ function convertir() {
     }
 }
 
+//Boton cotizador
+
 let varcotizador = document.getElementById("cotizador");
 cotizador.onclick = convertir;
 
@@ -38,14 +40,20 @@ formulario.addEventListener("submit", (e) => {
   console.log(inputs[0].value + " Gracias por utilizar nuestros servicios");
 })
 
+//ID: prueba
+
 let probando = document.getElementById("prueba");
 let prueba = ["<h2>Pagina en preparacion mil disculpas"]
 
+//ForEach de prueba
+
 prueba.forEach(item => {
-    let li = document.createElement("li");
-    li.innerHTML = item;
-    probando.append(li);
-  });
+  let li = document.createElement("li");
+  li.innerHTML = item;
+  probando.append(li);
+});
+
+//ForEach ID: 0 (ARS)
 
 let divisas = {id: 0, divisa: "ARS", precio: "1"};
 let prueba2 = document.getElementById("prueba2");
@@ -57,12 +65,16 @@ item.innerHTML = `
 `;
 prueba2.append(item);
 
+//ID: 1, 2 y 3
+
 let prueba3 = document.getElementById("prueba3");
 let divisas2 = [
   { id: 1, nombre: "USD", precio: 282 },
   { id: 2, nombre: "EUR", precio: 285 },
   { id: 3, nombre: "BRL", precio: 29 },
 ];
+
+//ForEach ID: 1(USD), 2(EUR) y 3(BRL)
 
 divisas2.forEach((divisa) => {
     let item = document.createElement("div");
@@ -139,6 +151,15 @@ botondeslogueo.addEventListener("click", () => {
   alert("Sesion cerrada");
 })
 
+//botonlogueo para volver a Iniciar Sesion
+
+let botonlogueo = document.getElementById("botonlogueo");
+botonlogueo.addEventListener("click", () => {
+  let usuario = prompt("Ingrese su usuario");
+  localStorage.setItem("usuario", usuario);
+  location.reload();
+})
+
 //Arrays
 function Simbolo(valor, letras, pais){
     this.precio = valor;
@@ -160,6 +181,64 @@ console.log (pruebaArray.indexOf("eur"));
 console.log (pruebaArray.includes("noexiste")); //false
 console.log (pruebaArray.includes("usd")); //true
 //includes comprueba si existe, true or false
+
+ 
+//si el ejemplo1 no es falsy retorna ejemplo1 en caso contrario retorna en ejemplo2
+const ejemplo1 = 0;
+const ejemplo2 = 1;
+const resultado = 
+ejemplo1 || ejemplo2;
+
+console.log( 0 || "Falsy")  //falsy
+console.log( 100 || "Falsy")  //100
+console.log( null || "Falsy")  //falsy
+console.log( undefined || "Falsy")  //falsy
+console.log( "Hola divisas" || "Falsy")  //hola divisas
+console.log( "" || "Falsy")  //falsy
+console.log( NaN || "Falsy")  //falsy
+console.log( true || "Falsy")  //true
+console.log( false || "Falsy") // falsy
+
+//Desetructuracion ejemplo divisa1
+const divisa = {
+  nombre2: "usd",
+  valor: 282,
+};
+
+/* Metodo obsoleto
+let nombre = divisa.nombre;
+let valor = divisa.valor; */
+
+//Metodo nuevo
+let {
+  nombre2,
+  valor,
+} = divisa;
+console.log(nombre2, valor);
+
+//Desetructuracion ejemplo divisa2
+const divisa2 = {
+  nombre: "eur",
+  valor: 285,
+  pais: {
+    italia: 1,
+    españa: 2,
+    francia: 3,
+    alemania: 4,
+  },
+};
+
+let {
+  nombre3,
+  pais: { italia },
+} = divisa2;
+console.log(italia);
+
+//Modificacion de un objeto (divisa usd a eur)
+let objeto = {divisa: "usd", valor: 282};
+let objeto1 = objeto;
+objeto1.divisa = "eur";
+console.log(objeto);
 
 /* let contenedor = document.getElementById("contenedor");
 let parrafo = document.createElement("p");
