@@ -104,10 +104,37 @@ let usuarioStorage = localStorage.getItem("usuario");
 if(usuarioStorage){
   usuario = usuarioStorage;
   let mensaje = `Bienvenido ${usuario}`;
-  alert(mensaje);
+  //alert(mensaje);
+  swal({
+    content: {
+      element: "input",
+      attributes: {
+        placeholder: (mensaje),
+        type: "text",
+      },
+    },
+  });
+  swal({
+    text: (mensaje),
+  });
 }else{
-  usuario = prompt("Ingrese su usuario");
-  localStorage.setItem("usuario", usuario);
+  swal({
+    content: {
+      element: "input",
+      attributes: {
+        placeholder: "Ingrese su nombre de usuario",
+        type: "text",
+      },
+    },
+  }).then((value) => {
+    localStorage.setItem("usuario", value);
+    location.reload();
+    usuario = value;
+    let mensaje = `Bienvenido ${usuario}`;
+    swal({
+      text: (mensaje),
+    });
+  });
 }
 
 let saludo = document.getElementById("botondeslogueo");
@@ -137,7 +164,6 @@ if(deslogueoStorage){
 deslogueo.forEach(item => {
   let div = document.createElement("div");
   div.innerHTML = `
-    <h2>ID: ${item.id}</h2>
     <p>Bienvenido: ${item.nombre}</p>
   `;
   varbienvenida.append(div);
@@ -145,20 +171,37 @@ deslogueo.forEach(item => {
   
 //lógica para el borrado del deslogueo y del contenedor
 botondeslogueo.addEventListener("click", () => {
-  localStorage.clear();
   varbienvenida.innerHTML = "Sesion Cerrada";
   varbienvenida.className = "cerrada";
-  alert("Sesion cerrada");
+  swal("Lo esperamos nuevamente!", "Sesion Cerrada", "success");
+  localStorage.clear();
 })
 
 //botonlogueo para volver a Iniciar Sesion
 
 let botonlogueo = document.getElementById("botonlogueo");
+//escribir tu nombre con swal y que te salude
 botonlogueo.addEventListener("click", () => {
-  let usuario = prompt("Ingrese su usuario");
-  localStorage.setItem("usuario", usuario);
-  location.reload();
-})
+  swal({
+    content: {
+      element: "input",
+      attributes: {
+        placeholder: "Escribe tu nombre",
+        type: "text",
+      },
+    },
+  }).then((value) => {
+    swal(`Hola ${value}!`);
+//Cargar el storage y mostrar con innerhtml
+const nombre = [
+  {nombre: `${value}` },
+];
+localStorage.setItem("deslogueo", JSON.stringify(nombre));
+
+let saludo = document.getElementById("bienvenida");
+saludo.innerHTML = `Bienvenido ${value}`;
+});
+});
 
 //Arrays
 function Simbolo(valor, letras, pais){
@@ -239,6 +282,38 @@ let objeto = {divisa: "usd", valor: 282};
 let objeto1 = objeto;
 objeto1.divisa = "eur";
 console.log(objeto);
+
+//Horario actual
+const DateTime = luxon.DateTime;
+const now = DateTime.now();
+document.getElementById("horarios").innerHTML = now.toLocaleString(DateTime.DATETIME_SHORT);
+
+//Zona horaria Brasil
+const DateTimeBrl = luxon.DateTime;
+const nowBrl = DateTimeBrl.now();
+const brasil = nowBrl.setZone("America/Sao_Paulo");
+console.log(brasil.toLocaleString(DateTime.DATETIME_SHORT));
+
+//Zona horaria España
+
+const DateTimeEsp = luxon.DateTime;
+const nowEsp = DateTimeEsp.now();
+const españa = nowEsp.setZone("Europe/Madrid");
+console.log(españa.toLocaleString(DateTime.DATETIME_SHORT));
+
+/* //Zona horaria Francia
+
+const DateTimeFra = luxon.DateTime;
+const nowFra = DateTimeFra.now();
+const francia = nowFra.setZone("Europe/Paris");
+console.log(francia.toLocaleString(DateTime.DATETIME_SHORT));
+
+//Zona horaria Italia
+
+const DateTimeIta = luxon.DateTime;
+const nowIta = DateTimeIta.now();
+const italia2 = nowIta.setZone("Europe/Rome");
+console.log(italia2.toLocaleString(DateTime.DATETIME_SHORT)); */
 
 /* let contenedor = document.getElementById("contenedor");
 let parrafo = document.createElement("p");
