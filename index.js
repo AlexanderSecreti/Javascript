@@ -4,7 +4,7 @@ function convertir() {
     let valore = parseInt(document.getElementById("valor").value);
     let resultado = 0;
     let dolar = 282;
-    let euro =285;
+    let euro = 285;
     let real = 29; 
     if (document.getElementById("uno").checked){
         resultado = valore * dolar;
@@ -43,7 +43,7 @@ formulario.addEventListener("submit", (e) => {
 //ID: prueba
 
 let probando = document.getElementById("prueba");
-let prueba = ["<h2>Pagina en preparacion mil disculpas"]
+let prueba = ["<h2>Conversor de Monedas Ya"]
 
 //ForEach de prueba
 
@@ -53,8 +53,8 @@ prueba.forEach(item => {
   probando.append(li);
 });
 
-//ForEach ID: 0 (ARS)
-
+/*
+//ForEach ID: 0 (ARS) (version antigua sin destructuring a modo ejemoplo)
 let divisas = {id: 0, divisa: "ARS", precio: "1"};
 let prueba2 = document.getElementById("prueba2");
 let item = document.createElement("div");
@@ -63,6 +63,14 @@ item.innerHTML = `
   <p>Divisa: ${divisas.divisa}</p>
   <b>$${divisas.precio}</b>
 `;
+prueba2.append(item);
+*/
+
+//ForEach ID: 0 (ARS) (version nueva con destructuring)
+let divisas = {id: 0, divisa: "ARS", precio: "1"};
+let prueba2 = document.getElementById("prueba2");
+let item = document.createElement("div");
+item.innerHTML = `<h2>${divisas.divisa}</h2><p>${divisas.precio}</p>`;
 prueba2.append(item);
 
 //ID: 1, 2 y 3
@@ -74,8 +82,8 @@ let divisas2 = [
   { id: 3, nombre: "BRL", precio: 29 },
 ];
 
-//ForEach ID: 1(USD), 2(EUR) y 3(BRL)
-
+/*
+//ForEach ID: 1(USD), 2(EUR) y 3(BRL) (version antigua sin destructuring)
 divisas2.forEach((divisa) => {
     let item = document.createElement("div");
     item.innerHTML = `
@@ -85,6 +93,14 @@ divisas2.forEach((divisa) => {
     `;
     prueba3.append(item);
   });
+  */
+
+//ForEach ID: 1(USD), 2(EUR) y 3(BRL) (version nueva con destructuring)
+divisas2.forEach((divisa) => {
+  let item = document.createElement("div");
+  item.innerHTML = `<h2>${divisa.nombre}</h2><p>${divisa.precio}</p>`;
+  prueba3.append(item);
+});
 
 //Se guarda incluso si reiniciamos la pc (datos comunes)
 localStorage.setItem("username", "admin");
@@ -192,6 +208,7 @@ botonlogueo.addEventListener("click", () => {
     },
   }).then((value) => {
     swal(`Hola ${value}!`);
+
 //Cargar el storage y mostrar con innerhtml
 const nombre = [
   {nombre: `${value}` },
@@ -300,6 +317,101 @@ const DateTimeEsp = luxon.DateTime;
 const nowEsp = DateTimeEsp.now();
 const españa = nowEsp.setZone("Europe/Madrid");
 console.log(españa.toLocaleString(DateTime.DATETIME_SHORT));
+
+//prueba console.log con tiempo
+
+setTimeout(() => {
+  console.log("PruebaDe5S");
+}, 5000);
+
+setTimeout(() => {
+  console.log("AhoraDe8s");
+}, 8000);
+
+//7x7 (console.log) 49
+
+function multiply (x, y) {    
+  return x * y;
+}
+function printSquare (x) {    
+  let s = multiply(x, x);    
+  console.log(s);
+}
+printSquare(7);
+
+//Contador hasta 5 con setInterval
+
+let counter = 0;
+const interval = setInterval(() => {
+  counter++;
+  console.log("Counter: ", counter);
+  if (counter >= 10) {
+    clearInterval(interval);
+    console.log("Se removió el intervalo");
+  }
+}, 1000);
+
+//Promesas con valor true
+const futuro = (value) => {
+  return new Promise((resolve, reject) => {
+    value ? resolve("Promesa exitosa") : reject("Promesa fallida");
+  });
+};
+
+//Capturar el valor de la promesa
+futuro(true)
+.then(response => console.log(response))
+.catch(error => console.log(error))
+.finally(() => console.log("finalizamos proceso"));
+
+//Fetch de prueba con decimales
+fetch("https://api.exchangerate.host/latest?base=USD")
+.then((response) => response.json())
+.then((data) => {
+  console.log(data);
+  console.log(data.rates);
+  console.log(data.rates.ARS);
+});
+
+
+//Let dolar con valor de la api
+let dolar2 = fetch("https://api.exchangerate.host/latest?base=USD")
+.then((response) => response.json())
+.then((data) => {
+    return data.rates.ARS;
+})
+.then((value) => {
+    return parseInt(value);
+})
+.then((value) => {
+    console.log(value);
+});
+
+//Let euro con valor de la api
+let euro2 = fetch("https://api.exchangerate.host/latest?base=EUR")
+.then((response) => response.json())
+.then((data) => {
+    return data.rates.ARS;
+})
+.then((value) => {
+    return parseInt(value);
+})
+.then((value) => {
+    console.log(value);
+});
+
+//Let real con valor de la api
+let real2 = fetch("https://api.exchangerate.host/latest?base=BRL")
+.then((response) => response.json())
+.then((data) => {
+    return data.rates.ARS;
+})
+.then((value) => {
+    return parseInt(value);
+})
+.then((value) => {
+    console.log(value);
+});
 
 /* //Zona horaria Francia
 
