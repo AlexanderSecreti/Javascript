@@ -1,11 +1,47 @@
-//Funcion para convertir dolares euros y reales a pesos argentinos
+//let dolarApi
+let dolarApi; fetch("https://api.exchangerate.host/latest?base=USD")
+.then((response) => response.json())
+.then((data) => {
+    dolarApi = data.rates.ARS;
+    console.log(dolarApi);
+});
 
+//let euroApi
+let euroApi; fetch("https://api.exchangerate.host/latest?base=EUR")
+.then((response) => response.json())
+.then((data) => {
+    euroApi = data.rates.ARS;
+    console.log(euroApi);
+});
+
+//let realApi
+let realApi; fetch("https://api.exchangerate.host/latest?base=BRL")
+.then((response) => response.json())
+.then((data) => {
+    realApi = data.rates.ARS;
+    console.log(realApi);
+});
+
+//Let dolarApi2 como ejemplo para mostrar por consola
+let dolarApi2 = fetch("https://api.exchangerate.host/latest?base=USD")
+.then((response) => response.json())
+.then((data) => {
+    return data.rates.ARS;
+})
+.then((value) => {
+    return parseInt(value);
+})
+.then((value) => {
+    console.log(value);
+});
+
+//Funcion para convertir dolares euros y reales a pesos argentinos
 function convertir() {
     let valore = parseInt(document.getElementById("valor").value);
     let resultado = 0;
-    let dolar = 282;
-    let euro = 285;
-    let real = 29; 
+    let dolar = dolarApi;
+    let euro = euroApi;
+    let real = realApi; 
     if (document.getElementById("uno").checked){
         resultado = valore * dolar;
         alert(`El cambio de ${valore} USD a ARG es ${resultado}`);
@@ -43,7 +79,7 @@ formulario.addEventListener("submit", (e) => {
 //ID: prueba
 
 let probando = document.getElementById("prueba");
-let prueba = ["<h2>Conversor de Monedas Ya"]
+let prueba = ["<h2>Conversor de Monedas Ya en Tiempo Real!"]
 
 //ForEach de prueba
 
@@ -67,19 +103,18 @@ prueba2.append(item);
 */
 
 //ForEach ID: 0 (ARS) (version nueva con destructuring)
-let divisas = {id: 0, divisa: "ARS", precio: "1"};
 let prueba2 = document.getElementById("prueba2");
 let item = document.createElement("div");
-item.innerHTML = `<h2>${divisas.divisa}</h2><p>${divisas.precio}</p>`;
+item.innerHTML = `<p>Este convertidor de divisas, puede ser utilizado para conocer en tiempo real el valor de las monedas y así poder operar e invertir en el mercado forex, la bolsa de valores de NSYE, NASDAQ e incluso con opciones binarias. La información que proporcionamos es con fines ilustrativos y pueden no reflejar el estado actual de las cotizaciones.</p>`;
 prueba2.append(item);
 
 //ID: 1, 2 y 3
 
 let prueba3 = document.getElementById("prueba3");
 let divisas2 = [
-  { id: 1, nombre: "USD", precio: 282 },
-  { id: 2, nombre: "EUR", precio: 285 },
-  { id: 3, nombre: "BRL", precio: 29 },
+  { id: 1, nombre: "USD", precio: 1 },
+  { id: 2, nombre: "EUR", precio: 2 },
+  { id: 3, nombre: "BRL", precio: 3 },
 ];
 
 /*
@@ -364,55 +399,6 @@ futuro(true)
 .catch(error => console.log(error))
 .finally(() => console.log("finalizamos proceso"));
 
-//Fetch de prueba con decimales
-fetch("https://api.exchangerate.host/latest?base=USD")
-.then((response) => response.json())
-.then((data) => {
-  console.log(data);
-  console.log(data.rates);
-  console.log(data.rates.ARS);
-});
-
-
-//Let dolar con valor de la api
-let dolar2 = fetch("https://api.exchangerate.host/latest?base=USD")
-.then((response) => response.json())
-.then((data) => {
-    return data.rates.ARS;
-})
-.then((value) => {
-    return parseInt(value);
-})
-.then((value) => {
-    console.log(value);
-});
-
-//Let euro con valor de la api
-let euro2 = fetch("https://api.exchangerate.host/latest?base=EUR")
-.then((response) => response.json())
-.then((data) => {
-    return data.rates.ARS;
-})
-.then((value) => {
-    return parseInt(value);
-})
-.then((value) => {
-    console.log(value);
-});
-
-//Let real con valor de la api
-let real2 = fetch("https://api.exchangerate.host/latest?base=BRL")
-.then((response) => response.json())
-.then((data) => {
-    return data.rates.ARS;
-})
-.then((value) => {
-    return parseInt(value);
-})
-.then((value) => {
-    console.log(value);
-});
-
 /* //Zona horaria Francia
 
 const DateTimeFra = luxon.DateTime;
@@ -512,36 +498,6 @@ switch (entrada){
         break;    
     }
 }
-}
-
-Funciones de suma, resta, multiplicacion y division
-
-function suma() {
-    let numero1 = parseInt(prompt("Ingrese el primer numero a sumar"));
-    let numero2 = parseInt(prompt("Ingrese el segundo numero a sumar"));
-    let resultado = parseInt(numero1) + parseInt(numero2);
-    alert(resultado);
-}
-
-function resta() {
-    let numero1 = parseInt(prompt("Ingrese el primer numero a restar"));
-    let numero2 = parseInt(prompt("Ingrese el segundo numero a restar"));
-    let resultado = parseInt(numero1) - parseInt(numero2);
-    alert(resultado);
-}
-
-function multiplicacion() {
-    let numero1 = parseInt(prompt("Ingrese el primer numero a multiplicar"));
-    let numero2 = parseInt(prompt("Ingrese el segundo numero a multiplicar"));
-    let resultado = parseInt(numero1) * parseInt(numero2);
-    alert(resultado);
-}
-
-function division() {
-    let numero1 = parseInt(prompt("Ingrese el primer numero a dividir"));
-    let numero2 = parseInt(prompt("Ingrese el segundo numero a dividir"));
-    let resultado = parseInt(numero1) / parseInt(numero2);
-    alert(resultado);
 }
 
 */
